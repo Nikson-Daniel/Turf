@@ -1,4 +1,6 @@
-package com.theadvent.turf_dev;
+package com.theadvent.turf_dev.Interfaces;
+
+import com.theadvent.turf_dev.Post;
 
 import java.util.List;
 
