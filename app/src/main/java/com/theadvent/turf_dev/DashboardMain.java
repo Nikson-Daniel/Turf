@@ -15,6 +15,8 @@ public class DashboardMain extends AppCompatActivity {
 
         loadFragment(new Dashboard());
 
+
+
     }
 
     public void loadFragment(Fragment fragment){
@@ -23,6 +25,9 @@ public class DashboardMain extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+
+
 
 
 }
