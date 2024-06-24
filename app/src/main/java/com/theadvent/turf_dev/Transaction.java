@@ -42,6 +42,8 @@ public class Transaction extends Fragment {
 
         transactionDataList.add(new TransactionData("1", "12345", "Nikson turf", "1000.00", "Completed", "22-08-2001", "01:45", "01:45 to 02:45"));
         transactionDataList.add(new TransactionData("1", "12345", "Nikson turf", "1000.00", "Completed", "22-08-2001", "01:45", "01:45 to 02:45"));
+        transactionDataList.add(new TransactionData("1", "12345", "Nikson turf", "1000.00", "Completed", "22-08-2001", "01:45", "01:45 to 02:45"));
+
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         transactionRecycler.setLayoutManager(layoutManager);

@@ -27,17 +27,17 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     @NonNull
     @Override
-    public TransactionAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_content, parent, false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.transaction_content, parent, false);
 
-        return new TransactionAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TransactionAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         TransactionData transactionData = transactionDataList.get(position);
-        holder.sNo.setText(position+1);
+        holder.sNo.setText(transactionData.getsNo());
         holder.transactionId.setText(transactionData.getTransactionId());
         holder.turfName.setText(transactionData.getTurfName());
         holder.price.setText(transactionData.getPrice());

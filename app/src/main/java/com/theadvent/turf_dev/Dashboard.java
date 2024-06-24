@@ -127,58 +127,7 @@ public class Dashboard extends Fragment {
     }
 
 
-    public void fetchPosts() {
-        ArrayList<String> dem = new ArrayList<>();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        ApiService apiService = retrofit.create(ApiService.class);
-
-        Call<List<Post>> call = apiService.getPosts();
-        call.enqueue(new Callback<List<Post>>() {
-            @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-                if (response.isSuccessful()) {
-                    List<Post> posts = response.body();
-                    if(posts!=null){
-
-                        for (Post post : posts) {
-                            Log.d("PostFragment", post.getName());
-
-
-
-                        }
-
-                        for (int i = 0; i < posts.size(); i++){
-                            pri(posts.get(i).getName(), posts.get(i).getDistrict(), posts.get(i).getTiming(), posts.get(i).getDescription(), posts.get(i).getAddress(), posts.get(i).getContact_number(), posts.get(i).getPrice());
-                        }
-
-                    }
-
-                } else {
-                    Log.e("PostFragment", "Request failed with code: " + response.code());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Post>> call, Throwable t) {
-                Log.e("PostFragment", "Network request failed", t);
-            }
-        });
-
-
-
-
-    }
-    ArrayList<String> value = new ArrayList<>();
-
-    void pri(String name, String district, String time, String description, String address, String number, String price){
-
-        recyclerDataList = new ArrayList<>();
-        recyclerDataList.add(new RecyclerData(name, district, time, description, address, number, price));
-        System.out.println(recyclerDataList.size());
 
 
 
@@ -189,4 +138,5 @@ public class Dashboard extends Fragment {
 
 
 
-}
+
+
