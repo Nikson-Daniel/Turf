@@ -12,9 +12,18 @@ import android.view.ViewGroup;
 
 import com.theadvent.turf_dev.Adapter.RecyclerAdapter;
 import com.theadvent.turf_dev.Adapter.TransactionAdapter;
+import com.theadvent.turf_dev.Data.RecyclerData;
 import com.theadvent.turf_dev.Data.TransactionData;
+import com.theadvent.turf_dev.Interfaces.ApiServiceTransaction;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Transaction extends Fragment {
@@ -22,6 +31,10 @@ public class Transaction extends Fragment {
     RecyclerView transactionRecycler;
     ArrayList<TransactionData> transactionDataList;
     TransactionAdapter transactionAdapter;
+
+    private List<Bookings> postList;
+
+    private static final String BASE_URL = "http://192.168.0.2/TurfApi/get_transaction.php/";
 
 
 
@@ -39,16 +52,39 @@ public class Transaction extends Fragment {
 
         transactionRecycler = view.findViewById(R.id.mTransactionRecycler);
         transactionDataList = new ArrayList<>();
-
-        transactionDataList.add(new TransactionData("1", "12345", "Nikson turf", "1000.00", "Completed", "22-08-2001", "01:45", "01:45 to 02:45"));
-        transactionDataList.add(new TransactionData("1", "12345", "Nikson turf", "1000.00", "Completed", "22-08-2001", "01:45", "01:45 to 02:45"));
-        transactionDataList.add(new TransactionData("1", "12345", "Nikson turf", "1000.00", "Completed", "22-08-2001", "01:45", "01:45 to 02:45"));
+        postList = new ArrayList<>();
 
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         transactionRecycler.setLayoutManager(layoutManager);
-        transactionAdapter = new TransactionAdapter(getContext(), transactionDataList);
-        transactionRecycler.setAdapter(transactionAdapter);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiServiceTransaction apiService = retrofit.create(ApiServiceTransaction.class);
+        Call<List<Bookings>> call = apiService.getTransaction();
+
+
+        call.enqueue(new Callback<List<Bookings>>() {
+            @Override
+            public void onResponse(Call<List<Bookings>> call, Response<List<Bookings>> response) {
+                postList = response.body();
+
+                for(int i = 0; i < postList.size(); i++){
+                    transactionDataList.add(new TransactionData(String.valueOf(i+1), postList.get(i).getBookingId(), postList.get(i).getTurfName(), postList.get(i).getAmount(), postList.get(i).getStatus(), postList.get(i).getDate(), postList.get(i).getTime(), postList.get(i).getTiming()));
+                }
+                transactionAdapter = new TransactionAdapter(getContext(), transactionDataList);
+                transactionRecycler.setAdapter(transactionAdapter);
+                
+            }
+
+
+
+            @Override
+            public void onFailure(Call<List<Bookings>> call, Throwable t) {
+                // Handle failure
+            }
+        });
 
         return view;
     }
