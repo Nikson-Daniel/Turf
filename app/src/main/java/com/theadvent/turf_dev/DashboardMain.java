@@ -13,8 +13,8 @@ public class DashboardMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_main);
 
-        //loadFragment(new Dashboard());
-        loadFragment(new Transaction());
+        loadFragment(new Dashboard());
+//        loadFragment(new Transaction());
 
 
 

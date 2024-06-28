@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="card_skin">#F6F0E6</color>
+    <color name="card_button">#926C2C</color>
+
 </resources>

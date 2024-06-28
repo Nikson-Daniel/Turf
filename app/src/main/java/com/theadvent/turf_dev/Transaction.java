@@ -75,7 +75,7 @@ public class Transaction extends Fragment {
                 }
                 transactionAdapter = new TransactionAdapter(getContext(), transactionDataList);
                 transactionRecycler.setAdapter(transactionAdapter);
-                
+
             }
 
 

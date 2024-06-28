@@ -54,9 +54,6 @@ public class Dashboard extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerDataList = new ArrayList<>();
 
-        recyclerDataList.add(new RecyclerData("Nikson Turf", "Madurai", "12AM-12PM", "A great place for sports.","123 Street, City","9994454208","1000/hr"));
-        recyclerDataList.add(new RecyclerData("Nikson Turf2", "Madurai", "12AM-12PM", "A great place for sports.","123 Street, City","9994454208","1000/hr"));
-        recyclerDataList.add(new RecyclerData("Nikson Turf", "Madurai", "12AM-12PM", "A great place for sports.","123 Street, City","9994454208","1000/hr"));
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -76,7 +73,7 @@ public class Dashboard extends Fragment {
 
                 System.out.println(postList.get(0).getAddress());
                 for(int i = 0; i < postList.size(); i++){
-                    recyclerDataList.add(new RecyclerData(postList.get(i).getName(),postList.get(i).getDistrict(),postList.get(i).getTiming(),postList.get(i).getDescription(),postList.get(i).getAddress(),postList.get(i).getContact_number(),postList.get(i).getPrice()));
+                    recyclerDataList.add(new RecyclerData(postList.get(i).getName(),postList.get(i).getDistrict(),postList.get(i).getTiming(),postList.get(i).getDescription(),postList.get(i).getAddress(),postList.get(i).getContact_number(),"₹"+postList.get(i).getPrice()+"/-hour"));
                 }
                 recyclerAdapter = new RecyclerAdapter(getContext(), recyclerDataList);
                 recyclerView.setAdapter(recyclerAdapter);
