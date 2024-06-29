@@ -13,4 +13,7 @@
     <string name="no_account_sign_up">Don\'t have an account? Sign up</string>
     <string name="already_have_account_login">Already have an account? Login</string>
     <string name="remembered_password_login">Remembered your password? Login</string>
+    <string name="search_for"><font size="15">Search for turfs or locations</font></string>
+    <string name="quote">Never say never because limits, like fears are often just illusions - Michael Jordan</string>
+    <string name="near_me">Near me</string>
 </resources>
