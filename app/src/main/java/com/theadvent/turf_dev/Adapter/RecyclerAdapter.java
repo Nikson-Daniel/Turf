@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.theadvent.turf_dev.Data.RecyclerData;
 import com.theadvent.turf_dev.R;
 
@@ -46,6 +49,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.price.setText(recyclerData.getPrice());
         holder.number.setText(recyclerData.getNumber());
 
+        List<SlideModel> slideModels = new ArrayList<>();
+        slideModels.add(new SlideModel(recyclerData.getLink1(), ScaleTypes.FIT));
+        slideModels.add(new SlideModel(recyclerData.getLink2(), ScaleTypes.FIT));
+        slideModels.add(new SlideModel(recyclerData.getLink3(), ScaleTypes.FIT));
+        slideModels.add(new SlideModel(recyclerData.getLink4(), ScaleTypes.FIT));
+        slideModels.add(new SlideModel(recyclerData.getLink5(), ScaleTypes.FIT));
+
+        holder.imageSlider.setImageList(slideModels);
+
     }
 
     @Override
@@ -56,6 +68,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView name, district, timing, description, address, number, price;
+        public ImageSlider imageSlider;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +80,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             address = itemView.findViewById(R.id.mAddress);
             number = itemView.findViewById(R.id.mNumber);
             price = itemView.findViewById(R.id.mPrice);
+            imageSlider = itemView.findViewById(R.id.mImageSlider);
 
 
         }

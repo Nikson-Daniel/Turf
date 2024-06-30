@@ -16,6 +16,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.theadvent.turf_dev.Adapter.RecyclerAdapter;
 import com.theadvent.turf_dev.Data.RecyclerData;
 import com.theadvent.turf_dev.Interfaces.ApiService;
@@ -39,6 +42,8 @@ public class Dashboard extends Fragment {
 
     private static final String BASE_URL = "http://192.168.0.2/TurfApi/get_posts.php/";
 
+    public ImageSlider imageSlider;
+
 
 
 
@@ -55,6 +60,10 @@ public class Dashboard extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_dashboard, container, false);
         postList = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recyclerview);
+
+        //IMAGE SLIDER
+        imageSlider = view.findViewById(R.id.mImageSlider);
+        ArrayList<SlideModel> slideModels = new ArrayList<>();
 
 
 
@@ -80,12 +89,20 @@ public class Dashboard extends Fragment {
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 postList = response.body();
 
-                System.out.println(postList.get(0).getAddress());
                 for(int i = 0; i < postList.size(); i++){
-                    recyclerDataList.add(new RecyclerData(postList.get(i).getName(),postList.get(i).getDistrict(),postList.get(i).getTiming(),postList.get(i).getDescription(),postList.get(i).getAddress(),postList.get(i).getContact_number(),"₹"+postList.get(i).getPrice()+"/-hour"));
+
+                    recyclerDataList.add(new RecyclerData(postList.get(i).getName(),postList.get(i).getDistrict(),postList.get(i).getTiming(),postList.get(i).getDescription(),postList.get(i).getAddress(),postList.get(i).getContact_number(),"₹"+postList.get(i).getPrice()+"/-hour", postList.get(i).getLink1(), postList.get(i).getLink2(), postList.get(i).getLink3(), postList.get(i).getLink4(), postList.get(i).getLink5()));
+//                    slideModels.add(new SlideModel(postList.get(i).getLink1(),ScaleTypes.FIT));
+//                    slideModels.add(new SlideModel(postList.get(i).getLink1(),ScaleTypes.FIT));
                 }
+
                 recyclerAdapter = new RecyclerAdapter(getContext(), recyclerDataList);
+
+
+
+
                 recyclerView.setAdapter(recyclerAdapter);
+
 
 
 
