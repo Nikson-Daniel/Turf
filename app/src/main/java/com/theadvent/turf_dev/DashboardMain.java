@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -15,22 +17,42 @@ import java.util.ArrayList;
 
 public class DashboardMain extends AppCompatActivity {
     ImageSlider imageSlider;
+    ImageView profile, home, transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_main);
+        profile = findViewById(R.id.icProfile);
+        home = findViewById(R.id.icHome);
+        transaction = findViewById(R.id.icTransaction);
 
-        //imageSlider = findViewById(R.id.dddd);
 
         loadFragment(new Dashboard());
-//        loadFragment(new Transaction());
 
-//        ArrayList<SlideModel> slideModels = new ArrayList<>();
-//        slideModels.add(new SlideModel("https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&w=600", ScaleTypes.FIT));
-//        slideModels.add(new SlideModel("https://images.pexels.com/photos/1413412/pexels-photo-1413412.jpeg?auto=compress&cs=tinysrgb&w=600", ScaleTypes.FIT));
-//
-//        imageSlider.setImageList(slideModels, ScaleTypes.FIT);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadFragment(new Profile());
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadFragment(new Dashboard());
+            }
+        });
+
+        transaction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadFragment(new Transaction());
+            }
+        });
+
+
+
 
 
     }
