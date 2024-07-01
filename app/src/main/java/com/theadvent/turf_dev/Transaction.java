@@ -71,7 +71,7 @@ public class Transaction extends Fragment {
                 postList = response.body();
 
                 for(int i = 0; i < postList.size(); i++){
-                    transactionDataList.add(new TransactionData(String.valueOf(i+1), postList.get(i).getBookingId(), postList.get(i).getTurfName(), postList.get(i).getAmount(), postList.get(i).getStatus(), postList.get(i).getDate(), postList.get(i).getTime(), postList.get(i).getTiming()));
+                    transactionDataList.add(new TransactionData(String.valueOf(i+1), postList.get(i).getBookingId(), postList.get(i).getTurfName(), "₹"+postList.get(i).getAmount(), postList.get(i).getStatus(), postList.get(i).getDate(), postList.get(i).getTime(), postList.get(i).getTiming()));
                 }
                 transactionAdapter = new TransactionAdapter(getContext(), transactionDataList);
                 transactionRecycler.setAdapter(transactionAdapter);

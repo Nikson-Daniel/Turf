@@ -125,7 +125,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/appCompatButton"
+                android:id="@+id/bookNowBtn"
                 android:layout_width="167dp"
 
                 android:layout_height="35dp"
@@ -145,8 +145,8 @@
                 android:layout_marginBottom="2dp"
                 android:text="1 slot available"
                 android:textColor="@android:color/holo_red_dark"
-                app:layout_constraintBottom_toTopOf="@+id/appCompatButton"
-                app:layout_constraintEnd_toEndOf="@+id/appCompatButton"
+                app:layout_constraintBottom_toTopOf="@+id/bookNowBtn"
+                app:layout_constraintEnd_toEndOf="@+id/bookNowBtn"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

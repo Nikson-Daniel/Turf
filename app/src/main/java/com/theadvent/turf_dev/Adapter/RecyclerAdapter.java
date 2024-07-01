@@ -1,9 +1,11 @@
 package com.theadvent.turf_dev.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.theadvent.turf_dev.BookingMain;
 import com.theadvent.turf_dev.Data.RecyclerData;
 import com.theadvent.turf_dev.R;
 
@@ -57,6 +60,35 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         slideModels.add(new SlideModel(recyclerData.getLink5(), ScaleTypes.FIT));
 
         holder.imageSlider.setImageList(slideModels);
+        holder.booking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String link1 = recyclerData.getLink1().toString();
+                String link2 = recyclerData.getLink2().toString();
+                String link3 = recyclerData.getLink3().toString();
+                String link4 = recyclerData.getLink4().toString();
+                String link5 = recyclerData.getLink5().toString();
+                String turfName = recyclerData.getName().toString();
+                String address = recyclerData.getAddress().toString();
+                String description = recyclerData.getDescription().toString();
+
+                String[] bk = new String[8];
+                bk[0]= link1;
+                bk[1]= link2;
+                bk[2]= link3;
+                bk[3]= link4;
+                bk[4]= link5;
+                bk[5]= turfName;
+                bk[6]= address;
+                bk[7]= description;
+
+
+                Intent intent = new Intent(context, BookingMain.class);
+                intent.putExtra("values", bk);
+
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -68,6 +100,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView name, district, timing, description, address, number, price;
+
+        public Button booking;
         public ImageSlider imageSlider;
 
         public ViewHolder(@NonNull View itemView) {
@@ -81,6 +115,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             number = itemView.findViewById(R.id.mNumber);
             price = itemView.findViewById(R.id.mPrice);
             imageSlider = itemView.findViewById(R.id.mImageSlider);
+            booking = itemView.findViewById(R.id.bookNowBtn);
 
 
         }

@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -17,7 +18,9 @@ import java.util.ArrayList;
 
 public class DashboardMain extends AppCompatActivity {
     ImageSlider imageSlider;
-    ImageView profile, home, transaction;
+    ImageView profile, home, transaction, back, menu;
+
+    TextView appBarText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +29,23 @@ public class DashboardMain extends AppCompatActivity {
         profile = findViewById(R.id.icProfile);
         home = findViewById(R.id.icHome);
         transaction = findViewById(R.id.icTransaction);
+        back = findViewById(R.id.mBack);
+        appBarText = findViewById(R.id.appBarTxt);
+        menu = findViewById(R.id.mMenu);
 
 
         loadFragment(new Dashboard());
+        menu.setVisibility(View.VISIBLE);
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //BACKICON VISIBILITY
+                back.setVisibility(View.VISIBLE);
+                //APPBAR TEXT
+                appBarText.setText("Profile");
+                appBarText.setVisibility(View.VISIBLE);
+
                 loadFragment(new Profile());
             }
         });
@@ -40,6 +53,9 @@ public class DashboardMain extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                menu.setVisibility(View.VISIBLE);
+                back.setVisibility(View.GONE);
+                appBarText.setVisibility(View.GONE);
                 loadFragment(new Dashboard());
             }
         });
@@ -47,6 +63,11 @@ public class DashboardMain extends AppCompatActivity {
         transaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //BACKICON VISIBILITY
+                back.setVisibility(View.VISIBLE);
+                //APPBAR TEXT
+                appBarText.setText("Transactions");
+                appBarText.setVisibility(View.VISIBLE);
                 loadFragment(new Transaction());
             }
         });

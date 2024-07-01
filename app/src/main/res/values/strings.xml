@@ -19,4 +19,12 @@
     <string name="at"> at </string>
     <string name="slot">Slot - </string>
     <string name="id">ID - </string>
+    <string name="transaction">Transaction</string>
+    <string name="description">Description</string>
+    <string name="book_your_slot">Book your slots</string>
+
+    <style name="profile">Profile</style>
+
+    <string name="update_profile">Update profile</string>
+
 </resources>
